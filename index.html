@@ -2,92 +2,198 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,
+                   maximum-scale=1.0, user-scalable=no">
 
-    <title>我的个人网站</title>
+    <title></title>
 
     <style>
-        /* 整个网页 */
+
+        /* =========================
+           基础设置
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
         html,
         body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            background: white;
-            color: black;
-            font-family: Arial, "Microsoft YaHei", sans-serif;
+            overflow: hidden;
         }
 
-        /* 顶部文字 */
-        .top {
-            position: absolute;
-            top: 20px;
-            left: 0;
+
+        /* =========================
+           第一个页面
+        ========================= */
+
+        #home {
+            position: fixed;
+            inset: 0;
+
             width: 100%;
-            text-align: center;
-            z-index: 10;
-        }
+            height: 100%;
 
-        .top h1 {
-            margin: 0 0 10px 0;
-            font-size: 32px;
-        }
+            /* lei.gif 作为背景 */
+            background-image: url("lei.jpeg");
 
-        .top p {
-            margin: 0;
-            font-size: 16px;
-        }
-
-        /* 图片所在区域 */
-        .center {
-            width: 100%;
-            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
 
             display: flex;
             justify-content: center;
+            align-items: flex-end;
+        }
+
+
+        /* =========================
+           淡白色圆形按钮
+        ========================= */
+
+        #enterButton {
+            position: absolute;
+
+            left: 50%;
+            bottom: 12%;
+
+            transform: translateX(-50%);
+
+            width: 72px;
+            height: 72px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255, 255, 255, 0.65);
+
+            background: rgba(255, 255, 255, 0.28);
+
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+
+            cursor: pointer;
+
+            box-shadow:
+                0 0 20px rgba(255, 255, 255, 0.18);
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
+        }
+
+
+        /* 点击时稍微缩小 */
+        #enterButton:active {
+            transform: translateX(-50%) scale(0.92);
+
+            background: rgba(255, 255, 255, 0.42);
+        }
+
+
+        /* =========================
+           第二个页面
+        ========================= */
+
+        #page2 {
+            position: fixed;
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: white;
+
+            display: none;
+
+            justify-content: center;
             align-items: center;
+
+            text-align: center;
+
+            padding: 30px;
         }
 
-        /* 正方形 GIF */
-        .center img {
-            width: 60vmin;
-            height: 60vmin;
 
-            object-fit: contain;
-            display: block;
+        #page2 h1 {
+            margin: 0;
+
+            color: #222;
+
+            font-size: 28px;
+
+            font-weight: normal;
         }
 
-        /* 手机 */
-        @media (max-width: 600px) {
-            .top h1 {
-                font-size: 26px;
-            }
-
-            .top p {
-                font-size: 14px;
-            }
-
-            .center img {
-                width: 75vmin;
-                height: 75vmin;
-            }
-        }
     </style>
 </head>
 
+
 <body>
 
-    <!-- 最上面的文字 -->
-    <div class="top">
-        <h1>你好！👋</h1>
-        <p>欢迎来到我的个人网站</p>
+
+    <!-- =========================
+         第一个页面
+    ========================= -->
+
+    <div id="home">
+
+        <!-- 淡白色圆形按钮 -->
+        <button
+            id="enterButton"
+            aria-label="进入网站">
+        </button>
+
     </div>
 
-    <!-- 网页正中央的 GIF -->
-    <div class="center">
-        <img src="shenkong.gif" alt="shenkong">
+
+
+    <!-- =========================
+         第二个页面
+    ========================= -->
+
+    <div id="page2">
+
+        <h1>
+            这是我创建的第一个网站
+        </h1>
+
     </div>
+
+
+
+    <script>
+
+        /* 获取按钮 */
+        const button =
+            document.getElementById("enterButton");
+
+        /* 获取第一个页面 */
+        const home =
+            document.getElementById("home");
+
+        /* 获取第二个页面 */
+        const page2 =
+            document.getElementById("page2");
+
+
+        /* 点击按钮 */
+        button.addEventListener("click", function () {
+
+            /* 隐藏第一页 */
+            home.style.display = "none";
+
+            /* 显示第二页 */
+            page2.style.display = "flex";
+
+        });
+
+    </script>
+
 
 </body>
 </html>
