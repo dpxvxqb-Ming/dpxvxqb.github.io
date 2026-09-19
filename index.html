@@ -7,55 +7,39 @@
     <title>我的个人网站</title>
 
     <style>
-        /* 页面基础设置 */
+        /* 整个网页 */
         html,
         body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-        }
-
-        body {
-            background: #000;
-            color: white;
+            background: white;
+            color: black;
             font-family: Arial, "Microsoft YaHei", sans-serif;
-
-            /* 防止出现多余滚动条 */
-            overflow: hidden;
         }
 
         /* 顶部文字 */
         .top {
             position: absolute;
-            top: 0;
+            top: 20px;
             left: 0;
-
             width: 100%;
-
             text-align: center;
-
-            padding: 20px 10px;
-            box-sizing: border-box;
-
             z-index: 10;
         }
 
         .top h1 {
-            margin: 0 0 8px 0;
+            margin: 0 0 10px 0;
             font-size: 32px;
-
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
         }
 
         .top p {
             margin: 0;
             font-size: 16px;
-
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
         }
 
-        /* 中间图片区域 */
+        /* 图片所在区域 */
         .center {
             width: 100%;
             height: 100vh;
@@ -65,22 +49,17 @@
             align-items: center;
         }
 
-        /* GIF 图片 */
+        /* 正方形 GIF */
         .center img {
-            width: 70vmin;
-            height: 70vmin;
-
-            max-width: 80vw;
-            max-height: 80vh;
+            width: 60vmin;
+            height: 60vmin;
 
             object-fit: contain;
-
             display: block;
         }
 
-        /* 手机屏幕 */
+        /* 手机 */
         @media (max-width: 600px) {
-
             .top h1 {
                 font-size: 26px;
             }
@@ -90,11 +69,8 @@
             }
 
             .center img {
-                width: 80vmin;
-                height: 80vmin;
-
-                max-width: 85vw;
-                max-height: 70vh;
+                width: 75vmin;
+                height: 75vmin;
             }
         }
     </style>
@@ -102,15 +78,15 @@
 
 <body>
 
-    <!-- 顶部文字 -->
+    <!-- 最上面的文字 -->
     <div class="top">
         <h1>你好！👋</h1>
         <p>欢迎来到我的个人网站</p>
     </div>
 
-    <!-- 中间 GIF -->
+    <!-- 网页正中央的 GIF -->
     <div class="center">
-        <img src="shenkong.gif" alt="我的图片">
+        <img src="shenkong.gif" alt="shenkong">
     </div>
 
 </body>
