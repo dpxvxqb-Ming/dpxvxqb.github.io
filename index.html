@@ -2,9 +2,12 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0,
-                   maximum-scale=1.0, user-scalable=no">
+          content="width=device-width,
+                   initial-scale=1.0,
+                   maximum-scale=1.0,
+                   user-scalable=no">
 
     <title></title>
 
@@ -22,85 +25,164 @@
         body {
             margin: 0;
             padding: 0;
+
             width: 100%;
             height: 100%;
+
             overflow: hidden;
         }
 
 
         /* =========================
-           第一个页面
+           第一页：背景
         ========================= */
 
         #home {
             position: fixed;
+
             inset: 0;
 
             width: 100%;
             height: 100%;
 
-            /* lei.gif 作为背景 */
-            background-image: url("lei.jpeg");
+            background-image: url("lei.gif");
 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
         }
 
 
         /* =========================
-           淡白色圆形按钮
+           白色圆形按钮
         ========================= */
 
         #enterButton {
+
             position: absolute;
 
             left: 50%;
-            bottom: 12%;
+
+            /*
+             * 类似手机指纹解锁的位置
+             */
+            bottom: 17%;
 
             transform: translateX(-50%);
 
-            width: 72px;
-            height: 72px;
+            width: 58px;
+            height: 58px;
+
+            padding: 0;
+
+            border: none;
 
             border-radius: 50%;
 
-            border: 1px solid rgba(255, 255, 255, 0.65);
-
-            background: rgba(255, 255, 255, 0.28);
-
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
+            background: rgba(255, 255, 255, 0.92);
 
             cursor: pointer;
 
+            /*
+             * 轻微立体感
+             */
             box-shadow:
-                0 0 20px rgba(255, 255, 255, 0.18);
+                0 3px 12px rgba(0, 0, 0, 0.15),
+                inset 0 1px 2px rgba(255, 255, 255, 1);
 
+            /*
+             * 点击时的动画
+             */
             transition:
-                transform 0.2s ease,
-                background 0.2s ease;
+                transform 0.15s ease,
+                background 0.15s ease;
         }
 
 
-        /* 点击时稍微缩小 */
-        #enterButton:active {
-            transform: translateX(-50%) scale(0.92);
+        /* 点击按钮 */
 
-            background: rgba(255, 255, 255, 0.42);
+        #enterButton:active {
+
+            transform:
+                translateX(-50%)
+                scale(0.9);
+
+            background: white;
         }
 
 
         /* =========================
-           第二个页面
+           时间和日期
+        ========================= */
+
+        #clock {
+
+            position: absolute;
+
+            left: 50%;
+
+            /*
+             * 在按钮下面
+             */
+            bottom: 10%;
+
+            transform: translateX(-50%);
+
+            width: 220px;
+
+            text-align: center;
+
+            color: #111;
+
+            /*
+             * 尽量使用圆润字体
+             */
+            font-family:
+                "Arial Rounded MT Bold",
+                "Nunito",
+                "Microsoft YaHei",
+                sans-serif;
+
+            font-weight: 500;
+
+            user-select: none;
+        }
+
+
+        /* 时间 */
+
+        #time {
+
+            font-size: 24px;
+
+            line-height: 1.2;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* 日期 */
+
+        #date {
+
+            margin-top: 5px;
+
+            font-size: 14px;
+
+            line-height: 1.2;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        /* =========================
+           第二页
         ========================= */
 
         #page2 {
+
             position: fixed;
+
             inset: 0;
 
             width: 100%;
@@ -119,15 +201,25 @@
         }
 
 
+        /* 第二页文字 */
+
         #page2 h1 {
+
             margin: 0;
 
             color: #222;
 
+            font-family:
+                "Arial Rounded MT Bold",
+                "Nunito",
+                "Microsoft YaHei",
+                sans-serif;
+
             font-size: 28px;
 
-            font-weight: normal;
+            font-weight: 500;
         }
+
 
     </style>
 </head>
@@ -137,23 +229,41 @@
 
 
     <!-- =========================
-         第一个页面
+         第一页
     ========================= -->
 
     <div id="home">
 
-        <!-- 淡白色圆形按钮 -->
+
+        <!-- 白色圆形按钮 -->
+
         <button
             id="enterButton"
             aria-label="进入网站">
         </button>
+
+
+        <!-- 时间和日期 -->
+
+        <div id="clock">
+
+            <div id="time">
+                00:00
+            </div>
+
+            <div id="date">
+                2026年9月19日
+            </div>
+
+        </div>
+
 
     </div>
 
 
 
     <!-- =========================
-         第二个页面
+         第二页
     ========================= -->
 
     <div id="page2">
@@ -168,29 +278,91 @@
 
     <script>
 
-        /* 获取按钮 */
+        /* =========================
+           时间和日期
+        ========================= */
+
+        function updateClock() {
+
+            const now = new Date();
+
+
+            /* 时间 */
+
+            const hours =
+                String(now.getHours())
+                .padStart(2, "0");
+
+            const minutes =
+                String(now.getMinutes())
+                .padStart(2, "0");
+
+
+            document.getElementById("time")
+                .textContent =
+                hours + ":" + minutes;
+
+
+            /* 日期 */
+
+            const year =
+                now.getFullYear();
+
+            const month =
+                now.getMonth() + 1;
+
+            const day =
+                now.getDate();
+
+
+            document.getElementById("date")
+                .textContent =
+                year + "年" +
+                month + "月" +
+                day + "日";
+        }
+
+
+        /* 页面打开立即显示 */
+
+        updateClock();
+
+
+        /* 每秒更新 */
+
+        setInterval(updateClock, 1000);
+
+
+
+        /* =========================
+           点击白色圆形按钮
+        ========================= */
+
         const button =
             document.getElementById("enterButton");
 
-        /* 获取第一个页面 */
         const home =
             document.getElementById("home");
 
-        /* 获取第二个页面 */
         const page2 =
             document.getElementById("page2");
 
 
-        /* 点击按钮 */
-        button.addEventListener("click", function () {
+        button.addEventListener(
+            "click",
+            function () {
 
-            /* 隐藏第一页 */
-            home.style.display = "none";
+                /* 隐藏第一屏 */
 
-            /* 显示第二页 */
-            page2.style.display = "flex";
+                home.style.display = "none";
 
-        });
+
+                /* 显示第二屏 */
+
+                page2.style.display = "flex";
+
+            }
+        );
 
     </script>
 
