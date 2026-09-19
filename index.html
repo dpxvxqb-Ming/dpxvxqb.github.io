@@ -7,87 +7,110 @@
     <title>我的个人网站</title>
 
     <style>
-        /* 整个网页 */
+        /* 页面基础设置 */
         html,
         body {
             margin: 0;
             padding: 0;
             width: 100%;
-            min-height: 100%;
+            height: 100%;
         }
 
         body {
-            min-height: 100vh;
-
-            /* GIF 背景 */
-            background-image: url("shenkong.gif");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-
-            /* 文字颜色 */
+            background: #000;
             color: white;
-
-            /* 字体 */
             font-family: Arial, "Microsoft YaHei", sans-serif;
 
-            /* 居中 */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            text-align: center;
+            /* 防止出现多余滚动条 */
+            overflow: hidden;
         }
 
-        /* 黑色半透明遮罩，让文字更加清楚 */
-        body::before {
-            content: "";
-            position: fixed;
+        /* 顶部文字 */
+        .top {
+            position: absolute;
             top: 0;
             left: 0;
 
             width: 100%;
-            height: 100%;
 
-            background: rgba(0, 0, 0, 0.25);
+            text-align: center;
 
-            z-index: -1;
+            padding: 20px 10px;
+            box-sizing: border-box;
+
+            z-index: 10;
         }
 
-        /* 中间内容 */
-        .content {
-            padding: 40px;
+        .top h1 {
+            margin: 0 0 8px 0;
+            font-size: 32px;
+
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
         }
 
-        /* 大标题 */
-        h1 {
-            font-size: 50px;
-            margin-bottom: 20px;
+        .top p {
+            margin: 0;
+            font-size: 16px;
 
-            text-shadow:
-                0 2px 10px rgba(0, 0, 0, 0.8);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
         }
 
-        /* 普通文字 */
-        p {
-            font-size: 20px;
-            margin: 10px 0;
+        /* 中间图片区域 */
+        .center {
+            width: 100%;
+            height: 100vh;
 
-            text-shadow:
-                0 2px 8px rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* GIF 图片 */
+        .center img {
+            width: 70vmin;
+            height: 70vmin;
+
+            max-width: 80vw;
+            max-height: 80vh;
+
+            object-fit: contain;
+
+            display: block;
+        }
+
+        /* 手机屏幕 */
+        @media (max-width: 600px) {
+
+            .top h1 {
+                font-size: 26px;
+            }
+
+            .top p {
+                font-size: 14px;
+            }
+
+            .center img {
+                width: 80vmin;
+                height: 80vmin;
+
+                max-width: 85vw;
+                max-height: 70vh;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="content">
+    <!-- 顶部文字 -->
+    <div class="top">
         <h1>你好！👋</h1>
+        <p>欢迎来到我的个人网站</p>
+    </div>
 
-        <p>欢迎来到我的个人网站。</p>
-
-        <p>这是我自己创建的第一个网站！</p>
+    <!-- 中间 GIF -->
+    <div class="center">
+        <img src="shenkong.gif" alt="我的图片">
     </div>
 
 </body>
